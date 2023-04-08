@@ -1,0 +1,19 @@
+﻿.homepage {
+    display: flex;
+    flex-direction: column;
+    width: 60%;
+}
+
+.like-comment-box {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+}
+
+.single-post {
+    border: 1px solid black;
+    border-radius: 12px;
+    margin: 20px 0px;
+    padding: 20px 0px;
+    box-shadow: 0px 0px 5px black;
+}

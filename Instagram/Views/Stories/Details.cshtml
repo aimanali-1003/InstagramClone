@@ -1,0 +1,25 @@
+﻿@model DataLayer.Models.Stories
+
+<div style="display:flex; flex-direction:column; position:absolute; top:5%; left:5%; background-color:grey">
+    <h4>@Html.DisplayFor(model => model.user.name)</h4>
+    <hr />
+    <img style="width:250px; height:auto" src="@Model.storyImage" />
+    @if (DateTime.Now.Hour - Model.createdAt.Hour <= 0)
+    {
+        <p>@(DateTime.Now.Minute - @Model.createdAt.Minute) mins ago</p>
+    }
+    else
+    {
+        <p>@(DateTime.Now.Hour - @Model.createdAt.Hour) hours ago</p>
+    }
+    <p>
+        @if(Int16.Parse(User.Identity.Name) == Model.userId)
+        {
+                using (Html.BeginForm("DeleteStory", "Stories", new { storyId = Model.id }))
+                {
+                    <input type="submit" value="Delete" />
+                }
+        }
+        @Html.ActionLink("Close", "Index", "Home")
+    </p>
+</div>

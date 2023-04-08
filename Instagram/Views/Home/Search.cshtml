@@ -1,0 +1,43 @@
+﻿@model ICollection<DataLayer.Models.User>
+@{
+    ViewBag.Title = "Search";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<link rel="stylesheet" runat="server" media="screen" href="~/Content/CSS/Search.css" />
+
+<div class="search-page">
+
+    <h2>Search</h2>
+    <br /><br />
+    <p>
+        @using (@Html.BeginForm())
+        {
+            <div class="search-box">
+                @Html.TextBox("search") <input class="search-btn" type="submit" value="search" />
+            </div>
+        }
+    </p>
+    <table class="table">
+        @if (Model != null && Model.Count > 0)
+        {
+            foreach (var item in Model)
+            {
+                <tr>
+                    <td class="user-index" style="display: flex; flex-direction: row; align-items: center; gap: 10px" onclick="location.href='@Url.Action("Profile", "User", new { id=item.id })'">
+                        <img style="width: 100px; height: 100px; border-radius: 100%;" src="@item.profilePic" />
+                        @Html.DisplayFor(modelItem => item.username)
+                    </td>
+                </tr>
+            }
+        }
+        else
+        {
+            <caption>No Users Found</caption>
+        }
+    </table>
+</div>

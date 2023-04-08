@@ -1,0 +1,89 @@
+﻿@model DataLayer.ViewModels.ProfileData
+
+@{
+    ViewBag.Title = "Profile";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<style>
+    .profile-page {
+        width: 100%;
+    }
+</style>
+<div class="profile-page">
+
+
+    <h2>@Model.user.username</h2>        
+    @if (ViewBag.UserStatus != null)
+    {
+        <div style="display:flex; background-color:green; padding:2% 3%; border-radius: 9px; color:white; justify-content:space-between">
+            <p>@ViewBag.UserStatus</p>
+            @using (Html.BeginForm("CloseNotification", "User", new { profileId= @Model.user.id}))
+            {
+                <input type="submit" value="x" />
+            }
+        </div>
+    }
+    <hr />
+    <div style="display:flex; flex-direction:column; justify-content:center; margin:auto; align-items:center">
+        <img style="height:100px; width:100px; border-radius:100%" src="@Model.user.profilePic" />
+        <p style="font-weight:600">@Html.DisplayFor(model => model.user.name)</p>
+    </div>
+    @if (User.Identity.Name == Model.user.id.ToString())
+    {
+        if (Model.user.accountPrivacy)
+        {
+            using (Html.BeginForm("MakePublic", "User", new { id = Model.user.id }))
+            {
+                <input type="submit" value="Make Public" />
+            }
+        }
+        else
+        {
+            using (Html.BeginForm("MakePrivate", "User", new { id = Model.user.id }))
+            {
+                <input type="submit" value="Make Private" />
+            }
+        }
+    }
+    @if (User.Identity.Name != Model.user.id.ToString())
+    {
+        if (Model.following)
+        {
+            using (Html.BeginForm("UnFollow", "User", new { id = Model.user.id }))
+            {
+                <input type="submit" value="unfollow" />
+            }
+        }
+        else
+        {
+            using (Html.BeginForm("Follow", "User", new { id = Model.user.id }, FormMethod.Post, null))
+            {
+                <input type="submit" value="follow" />
+            }
+        }
+    }
+    <hr />
+    @if (User.Identity.Name != Model.user.id.ToString())
+    {
+        if (Model.following)
+        {
+            @Html.Partial("_UserLibrary", Model.postWithImages)
+        }
+        else
+        {
+            if (Model.user.accountPrivacy == false)
+            {
+                @Html.Partial("_UserLibrary", Model.postWithImages)
+            }
+            else
+            {
+                <p>This account is private. Please Follow to view posts</p>
+            }
+        }
+    }
+    else
+    {
+        @Html.Partial("_UserLibrary", Model.postWithImages)
+    }
+</div>
+

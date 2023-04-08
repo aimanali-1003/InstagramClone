@@ -1,0 +1,21 @@
+﻿@model DataLayer.Models.MultipleFileUpload
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div>
+    @using (Html.BeginForm("UploadMultipleFiles", "FileUpload", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        <span>Select File:</span>
+        <input type="file" name="postedFiles" multiple="multiple" />
+        <hr />
+        <input type="submit" value="Upload" />
+        <br />
+        <span style="color:green">@Html.Raw(ViewBag.Message)</span>
+    }
+    @if (ViewBag.FileStatus != null)
+    {
+        <p>@ViewBag.FileStatus</p>
+    }
+</div>

@@ -1,0 +1,13 @@
+﻿@model IEnumerable<DataLayer.ViewModels.PostWithImages>
+
+
+<div style="display:flex; flex-direction:row; flex-wrap:wrap; width:100%">
+    @foreach (var item in Model)
+    {
+        <div style="display:flex; flex-direction:column; justify-content:center; align-items:center; border:1px solid black; border-radius:13px; padding:2% 3%">
+            <img style="width:250px; height:250px;" src="@item.images[0].imageUrl" />
+            <p style="text-align:center">@item.post.description</p>
+        </div>
+    }
+</div>
+

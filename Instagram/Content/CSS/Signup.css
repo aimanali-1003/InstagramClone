@@ -1,0 +1,43 @@
+﻿.signup-logo {
+    font-size: 95px;
+}
+
+.signup-page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    border: 1px solid black;
+    border-radius: 9px;
+    width: 35%;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+    height: 600px;
+}
+
+    .signup-page form {
+        width: 100%;
+        padding: 10px 20px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+.form-horizontal {
+    width: 80%;
+}
+
+.signup-page input {
+    width: 100%;
+}
+
+input[type=submit] {
+    margin-top: 20px;
+    border-radius: 12px;
+}
+
+    input[type=submit]:hover {
+        cursor: pointer;
+        box-shadow: 0px 0px 10px black;
+    }

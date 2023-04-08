@@ -1,0 +1,19 @@
+﻿@model IEnumerable<DataLayer.Models.Stories>
+
+<link rel="stylesheet" runat="server" media="screen" href="~/Content/CSS/Stories.css" />
+
+<p>
+    @Html.ActionLink("Create New Story", "Create")
+</p>
+<hr/>
+<div style="display:flex; flex-direction:row; gap:10px;">
+    @foreach (var item in Model)
+    {
+        <div class="storyDiv" onclick="$('#story-details-box').load('@Url.Action("Details","Stories", new { storyId = item.id })')">
+            <img class="storyImage" src="@item.storyImage" style="width:100px; height:100px; border-radius: 50%" />
+            <p style="text-align:center" class="storyUser">@item.user.name</p>
+            <div id="story-details-box"></div>
+        </div>
+    }
+</div>
+<hr/>

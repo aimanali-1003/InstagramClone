@@ -1,0 +1,7 @@
+﻿Enable-Migrations -ContextTypeName DBContext -MigrationsDirectory Migrations\Instagram
+OR
+enable-migrations -ContextProjectName DataLayer -StartUpProjectName DataLayer
+
+add-migration -ConfigurationTypeName Instagram.Migrations.Configuration "Initial Create"
+
+update-database -ConfigurationTypeName Instagram.Migrations.Configuration

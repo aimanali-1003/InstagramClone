@@ -1,0 +1,16 @@
+﻿
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div>
+
+    <h2>Delete</h2>
+
+    @using (Html.BeginForm("Delete", "Post", FormMethod.Post))
+    {
+        <p>Are you sure you want to delete?</p>
+        <input type="submit" />
+    }
+</div>

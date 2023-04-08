@@ -1,0 +1,23 @@
+﻿<link rel="stylesheet" runat="server" media="screen" href="~/Content/CSS/Navbar.css" />
+
+@{ 
+    string profilePic = HttpContext.Current.Session["profilePic"] as string;
+}
+
+<div class="topNav">
+    <div class="navbar">
+        <h3>Instagram</h3>
+        <p><i class="fa-solid fa-house"></i> @Html.ActionLink("Home", "Index", "Home")</p>
+        <p><i class="fa-solid fa-magnifying-glass"></i>@Html.ActionLink("Search", "Search", "Home")</p>
+        @if (User.Identity.IsAuthenticated)
+        {
+            <p class="imageLink"><img class="profilePic" src='@profilePic'/>@Html.ActionLink("Profile", "Profile", "User", new { id = Int16.Parse(User.Identity.Name) }, null)</p>
+            <p><i class="fa-solid fa-door-open"></i>@Html.ActionLink("Logout", "Logout", "User")</p>
+        }
+        else
+        {
+            <p></p>
+            <p><i class="fa-solid fa-door-open"></i>@Html.ActionLink("Login", "Login", "User")</p>
+        }
+    </div>
+</div>

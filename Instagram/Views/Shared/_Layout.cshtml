@@ -1,0 +1,27 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<link rel="stylesheet" runat="server" media="screen" href="~/Content/CSS/Global.css" />
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>_Layout</title>
+</head>
+<body>
+    <style>
+        .layout{
+            display:flex;
+            flex-direction:row;
+        }
+    </style>
+    <div class="layout">
+        @Html.Partial("_Navbar")
+        @RenderBody()
+    </div>
+
+    <script src="https://kit.fontawesome.com/528124f32e.js" crossorigin="anonymous"></script>
+</body>
+</html>

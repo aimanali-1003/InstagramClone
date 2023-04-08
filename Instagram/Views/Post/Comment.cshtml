@@ -1,0 +1,47 @@
+﻿@model IEnumerable<DataLayer.Models.Comment>
+
+<div style="padding:5% 2%; width:100%">
+    <b>Comments</b>
+
+    @foreach (var comment in Model)
+    {
+        <div style="display:flex; flex-direction:row; justify-content:center; align-items:center; gap:10px">
+            <img style="height:50px; width:50px; border-radius:50%" src="@comment.user.profilePic" />
+            <p>@comment.description</p>
+            @if (comment.post.userId == Int16.Parse(User.Identity.Name) || comment.userId == Int16.Parse(User.Identity.Name))
+            {
+                using (Html.BeginForm("DeleteComment", "Post", new { commentId = comment.id }))
+                {
+                    <input type="submit" value="Delete" />
+                }
+            }
+            @if (comment.userId == Int16.Parse(User.Identity.Name))
+            {
+                <button onclick="$('#comment-edit-box').load('@Url.Action("EditComment","Post", new { commentId = comment.id })')">
+                    Edit
+                </button>
+                <div id="comment-edit-box"></div>
+            }
+
+        </div>
+    }
+    <br/>
+    @using (Html.BeginForm("Comment", "Post", FormMethod.Post))
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-horizontal">
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="form-group">
+                @Html.Editor("Desc", new { htmlAttributes = new { @class = "form-control" } })
+            </div>
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Create" class="btn btn-default" />
+                </div>
+            </div>
+        </div>
+    }
+    <br/>
+    @Html.ActionLink("Close", "Index", "Home")
+</div>

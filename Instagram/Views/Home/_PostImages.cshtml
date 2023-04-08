@@ -1,0 +1,9 @@
+﻿@model IEnumerable<DataLayer.Models.PostImages>
+
+<div style="display:flex; flex-direction:row; flex-wrap:wrap; justify-content:center; align-items:center">
+
+    @foreach (var item in Model)
+    {
+        <img style="width:400px; height:400px" src="@item.imageUrl" />
+    }
+</div>

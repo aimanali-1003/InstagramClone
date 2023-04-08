@@ -1,0 +1,16 @@
+﻿.storyDiv:hover {
+    cursor: pointer;
+}
+
+.storyUser {
+    text-align: center;
+    margin: 0px;
+}
+
+.storyImage {
+    transition: ease-in-out all 0.3s;
+}
+
+    .storyImage:hover {
+        box-shadow: 1px 1px 10px black;
+    }
